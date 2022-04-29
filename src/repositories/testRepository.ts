@@ -52,7 +52,53 @@ async function getTestsByTeachers(queriedName?: string) {
   });
 }
 
+async function getSingle(queriedId: number){
+  return prisma.test.update({
+    where:{
+      id: queriedId,
+    },
+    data:{
+      views:{
+        increment: 1
+      }
+    },
+    include:{
+      category: true,
+      teacherDiscipline:{
+        include:{
+          teacher: true,
+          discipline:{
+            include:{
+              term: true
+            }
+          }
+        }
+      }
+    }
+  })
+}
+
+export interface Test {
+  name: string,
+  pdfUrl: string,
+  categoryId: number,
+  teacherDisciplineId: number
+}
+
+async function addTest(testData: Test){
+  return prisma.test.create({
+    data:{
+      name: testData.name,
+      pdfUrl: testData.pdfUrl,
+      categoryId: testData.categoryId,
+      teacherDisciplineId: testData.teacherDisciplineId
+    }
+  })
+}
+
 export default {
   getTestsByDiscipline,
   getTestsByTeachers,
+  getSingle,
+  addTest,
 };
