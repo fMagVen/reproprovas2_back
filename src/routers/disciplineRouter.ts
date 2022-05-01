@@ -6,7 +6,7 @@ const disciplineRouter = Router();
 
 disciplineRouter.get(
   "/disciplines",
-  /*ensureAuthenticatedMiddleware,*/
+  ensureAuthenticatedMiddleware,
   disciplineController.findMany
 );
 

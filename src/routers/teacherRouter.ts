@@ -6,7 +6,7 @@ const teacherRouter = Router();
 
 teacherRouter.get(
   "/teachers/:id",
-  /*ensureAuthenticatedMiddleware,*/
+  ensureAuthenticatedMiddleware,
   teacherController.findMany
 );
 

@@ -1,4 +1,5 @@
 import { prisma } from "../dbSetup.js";
+import { CreateTestData } from '../services/testService.js'
 
 async function getTestsByDiscipline(queriedName? :string) {
   return prisma.term.findMany({
@@ -27,28 +28,16 @@ async function getTestsByDiscipline(queriedName? :string) {
 }
 
 async function getTestsByTeachers(queriedName?: string) {
-  return prisma.teacher.findMany({
-    where:{
-      name:{
-        startsWith: queriedName
-      }
+  return prisma.teacherDiscipline.findMany({
+    include: {
+      teacher: true,
+      discipline: true,
+      tests: {
+        include: {
+          category: true,
+        },
+      },
     },
-    include:{
-      teacherDisciplines:{
-        include:{
-          discipline:{
-            include:{
-              term: true
-            }
-          },
-          tests:{
-            include:{
-              category: true
-            }
-          }
-        }
-      }
-    }
   });
 }
 
@@ -78,14 +67,7 @@ async function getSingle(queriedId: number){
   })
 }
 
-export interface Test {
-  name: string,
-  pdfUrl: string,
-  categoryId: number,
-  teacherDisciplineId: number
-}
-
-async function addTest(testData: Test){
+async function addTest(testData: CreateTestData){
   return prisma.test.create({
     data:{
       name: testData.name,

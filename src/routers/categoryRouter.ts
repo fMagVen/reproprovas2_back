@@ -6,7 +6,7 @@ const categoryRouter = Router();
 
 categoryRouter.get(
   "/categories",
-  /*ensureAuthenticatedMiddleware,*/
+  ensureAuthenticatedMiddleware,
   categoryController.findMany
 );
 

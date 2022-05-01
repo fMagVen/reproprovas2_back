@@ -1,5 +1,7 @@
+import { Test } from "@prisma/client";
 import testRepository from "../repositories/testRepository.js";
-import {Test} from '../repositories/testRepository.js'
+
+export type CreateTestData = Omit<Test, "id" | "views">;
 
 interface Filter {
   groupBy: "disciplines" | "teachers",
@@ -18,7 +20,7 @@ async function getSingle(id: string){
   return testRepository.getSingle(parseInt(id))
 }
 
-async function addTest(test: Test){
+async function addTest(test: CreateTestData){
   return testRepository.addTest(test)
 }
 

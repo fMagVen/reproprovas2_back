@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import testService from "../services/testService.js";
-import {Test} from '../repositories/testRepository.js'
+import {CreateTestData} from '../services/testService.js'
 
 async function find(req: Request, res: Response) {
   const { groupBy, name } = req.query as { groupBy: string, name: string };
@@ -23,7 +23,7 @@ async function getSingle(req: Request, res: Response){
 }
 
 async function addTest(req: Request, res:Response){
-  const { name, pdfUrl, categoryId, teacherDisciplineId } = req.body as Test
+  const { name, pdfUrl, categoryId, teacherDisciplineId } = req.body as CreateTestData
   const test = await testService.addTest({name, pdfUrl, categoryId, teacherDisciplineId})
   res.sendStatus(201)
 }
