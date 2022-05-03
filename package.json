@@ -5,10 +5,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx ts-node src/app.ts",
+    "start": "npx ts-node src/server.ts",
     "dev": "nodemon src/server.ts",
-    "createdevdb": "npx prisma migrate dev && bash ./database/populate-database",
-    "createtestdb": "dotenv -e .env.test -- npx prisma migrate dev && bash ./database/populate-database",
+    "createdevdb": "npx prisma migrate dev && (cd ./database; bash ./populate-database)",
+    "createtestdb": "dotenv -e .env.test -- npx prisma migrate dev && (cd ./database; bash ./populate-database)",
     "test": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i"
   },
   "keywords": [],

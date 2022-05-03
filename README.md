@@ -8,15 +8,13 @@ example: DATABASE_URL=postgres://postgres:123456@localhost:5432/repoprovas123tes
 
 make sure file in database/src/database contains the name of the test database, in the example above, repoprovas123testando
 
-run npm run createtestdb
+run 
 
-the last line wont work for some reason so you'll have to do it manually
+```npm run createtestdb```
 
-cd database
+now you can run 
 
-bash populate-database
-
-now you can run npm run test
+```npm run test```
 
 
 ## to setup and run the development environment:
@@ -28,12 +26,10 @@ example: DATABASE_URL=postgres://postgres:123456@localhost:5432/repoprovas2
 
 make sure file in database/src/database contains the name of the test database, in the example above, repoprovas2
 
-run npm run createdevdb
+run 
 
-the last line wont work for some reason so you'll have to do it manually
+```npm run createdevdb```
 
-cd database
+now you can run 
 
-bash populate-database
-
-now you can run npm run dev
+```npm run dev```
