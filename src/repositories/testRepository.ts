@@ -41,6 +41,14 @@ async function getTestsByTeachers(queriedName?: string) {
   });
 }
 
+async function checkTestExistence(queriedId: number){
+  return prisma.test.findUnique({
+    where:{
+      id: queriedId
+    }
+  })
+}
+
 async function getSingle(queriedId: number){
   return prisma.test.update({
     where:{
@@ -81,6 +89,7 @@ async function addTest(testData: CreateTestData){
 export default {
   getTestsByDiscipline,
   getTestsByTeachers,
+  checkTestExistence,
   getSingle,
   addTest,
 };

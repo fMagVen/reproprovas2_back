@@ -6,6 +6,7 @@ async function findMany(req: Request, res: Response) {
   if(isNaN(parseInt(id))) return res.sendStatus(400)
 
   const teachers = await teacherService.findMany(parseInt(id));
+  if(!teachers) return res.sendStatus(404)
   res.send({ teachers });
 }
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source src/functions;
+source ./src/functions;
 
-DATABASE=$(cat src/database);
+DATABASE=$(cat ./src/database);
 
 echo "Checking postgres status..." &&
 checkPostgres &&
